@@ -35,13 +35,14 @@ $(function () {
 
   // 监听注册表单，发送注册请求
   $("#form_reg").on("submit", (e) => {
+    // 阻止 form 默认提交行为
     e.preventDefault();
     $.ajax({
       type: "POST",
-      url: "/api/reguser",
+      url: baseUrl + "/api/reguser",
       data: {
-        username: $("#form_reg [name=username").val(),
-        password: $("#form_reg [name=password").val(),
+        username: $("#form_reg [name=username]").val(),
+        password: $("#form_reg [name=password]").val(),
       },
       success: (res) => {
         if (res.status !== 0) return layer.msg(res.message);
@@ -57,7 +58,7 @@ $(function () {
     e.preventDefault();
     $.ajax({
       type: "POST",
-      url: "/api/login",
+      url: baseUrl + "/api/login",
       data: $("#form_login").serialize(),
       success: (res) => {
         if (res.status !== 0) return layer.msg(res.message);
@@ -65,7 +66,8 @@ $(function () {
         // 将登录成功得到的 token 字符串，保存到 localStorage 中
         localStorage.setItem("token", res.token);
         // 跳转到主页
-        location.href = "/index.html";
+        // location.href = "/index.html";
+        location.href = "../../index.html";
       },
     });
   });
