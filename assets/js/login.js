@@ -31,7 +31,7 @@ $(function () {
   // 获取 layui 弹窗
   const layer = layui.layer;
   // 设置请求根路径
-  const baseUrl = "http://www.liulongbin.top:3007";
+  // const baseUrl = "http://www.liulongbin.top:3007";
 
   // 监听注册表单，发送注册请求
   $("#form_reg").on("submit", (e) => {
@@ -39,7 +39,7 @@ $(function () {
     e.preventDefault();
     $.ajax({
       type: "POST",
-      url: baseUrl + "/api/reguser",
+      url: "/api/reguser",
       data: {
         username: $("#form_reg [name=username]").val(),
         password: $("#form_reg [name=password]").val(),
@@ -58,7 +58,7 @@ $(function () {
     e.preventDefault();
     $.ajax({
       type: "POST",
-      url: baseUrl + "/api/login",
+      url: "/api/login",
       data: $("#form_login").serialize(),
       success: (res) => {
         if (res.status !== 0) return layer.msg(res.message);
@@ -67,7 +67,7 @@ $(function () {
         localStorage.setItem("token", res.token);
         // 跳转到主页
         // location.href = "/index.html";
-        location.href = "../../index.html";
+        location.href = "/就业班/前端29期大事件/MyEvent/index.html";
       },
     });
   });
