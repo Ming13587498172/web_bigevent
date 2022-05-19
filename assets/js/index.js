@@ -1,14 +1,22 @@
+$(function () {
+  // 调用 getUserInfo 函数获取用户基本信息
+  getUserInfo();
+});
+
+const layer = layui.layer;
+
 // 获取用户基本信息
-function getUserInfo () {
+function getUserInfo() {
   $.ajax({
     type: "GET",
     url: "/my/userinfo",
-    // headers: {
-    //   Authorization: localStorage.getItem("token"),
-    // },
+    headers: {
+      Authorization: localStorage.getItem("token"),
+    },
     success: (res) => {
-      if (res.status !== 0) return layui.layer.msg("数据请求失败！");
       console.log(res);
+      if (res.status !== 0) return layer.msg("数据请求失败！");
+      layer.msg(res.message);
       // 调用 renderAvatar 渲染用户头像
       renderAvatar(res.data);
     },
@@ -23,7 +31,7 @@ function getUserInfo () {
     //    }
     // },
   });
-};
+}
 
 // 渲染用户头像
 const renderAvatar = (user) => {
@@ -53,10 +61,8 @@ $("#btnLogout").click(() => {
       // 清空本地存储里面的 token
       localStorage.removeItem("token");
       // 重新跳转到登录页面
-      location.href = "/login.html";
+      // location.href = "/login.html";
+      location.href = "/就业班/前端29期大事件/MyEvent/login.html";
     }
   );
 });
-
-// 调用 getUserInfo 函数获取用户基本信息
-getUserInfo();
