@@ -74,13 +74,15 @@
       </td>
     </tr>
     {{/each}}
-  </script>
+</script>
+<!-- 定义分类可选项的模板结构 -->
 <script type="text/html" id="tpl-cate">
     <option value="">所有分类</option>
     {{each data}}
     <option value="{{$value.Id}}">{{$value.name}}</option>
     {{/each}}
-  </script>
+</script>
+
 <script src="../assets/lib/layui/layui.all.js"></script>
 <script src="../assets/lib/jquery.js"></script>
 <script src="../assets/js/baseAPI.js"></script>

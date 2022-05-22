@@ -58,17 +58,19 @@ $(function () {
       .cropper(options); // 重新初始化裁剪区域
   });
 
+  // 定义文章发布状态
   let art_state = "已发布";
-
+  // 点击存为草稿 改变状态为 草稿
   $("#btnSave2").on("click", function () {
     art_state = "草稿";
   });
 
+  // 监听 form 的提交
   $("#form-pub").on("submit", function (e) {
     // 1. 阻止表单的默认提交行为
     e.preventDefault();
     // 2. 基于 form 表单，快速创建一个 FormData 对象
-    var fd = new FormData($(this)[0]);
+    const fd = new FormData($(this)[0]);
     // 3. 将文章的发布状态，存到 fd 中
     fd.append("state", art_state);
     // 4. 将封面裁剪过后的图片，输出为一个文件对象
@@ -107,7 +109,9 @@ $(function () {
         }
         layer.msg("发布文章成功！");
         // 发布文章成功后，跳转到文章列表页面
-        location.href = "/article/art_list.html";
+        // location.href = "/article/art_list.html";
+        location.href = "/就业班/前端29期大事件/MyEvent/article/art_list.html";
+        window.parent.change();
       },
     });
   }
